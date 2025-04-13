@@ -229,18 +229,3 @@ print(classification_report(y_test, y_pred))
 
 ---
 
-## 📝 Homework / Assignment:
-Ask students to:
-- Pick a dataset (e.g., Titanic, Iris, or one of their choice)
-- Build an end-to-end ML pipeline
-- Submit a Jupyter Notebook or PDF report
-- Prepare a short (5–7 min) presentation
-
----
-
-Would you like me to prepare:
-- A polished **Jupyter Notebook template**?
-- A **Google Slides template** for presentations?
-- A **rubric** for final project grading?
-
-Let me know what to include!
