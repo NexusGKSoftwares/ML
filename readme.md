@@ -1,4 +1,3 @@
-Perfect! Here's a **full, detailed tutorial** for **Week 4 – Introduction to Machine Learning and Final Project** that you can use to teach your students. This includes **theory, code examples, and project guidance**. You can copy this into a Jupyter Notebook or share it as a PDF/LMS resource.
 
 ---
 
