@@ -1,4 +1,239 @@
 
+---
+
+# 📘 **Week 1: Introduction to Data Analytics**
+
+---
+
+## 📍 **Lesson 1: Introduction to Data Analytics**
+
+### ✅ What is Data Analytics?
+
+> Data Analytics is the process of examining, cleaning, transforming, and modeling data to discover useful information, draw conclusions, and support decision-making.
+
+---
+
+### 💡 Types of Data Analytics:
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Descriptive** | What happened? | Sales report for last month |
+| **Diagnostic** | Why did it happen? | Sales dropped due to bad marketing |
+| **Predictive** | What will happen? | Forecast future sales |
+| **Prescriptive** | What should we do? | Optimize pricing for best revenue |
+
+---
+
+### 🌍 Real-World Applications
+
+- **Healthcare**: Predict patient readmission
+- **Finance**: Detect fraud
+- **Marketing**: Customer segmentation
+- **Retail**: Inventory forecasting
+- **Sports**: Player performance analysis
+
+🧠 **Quick Task**: Think of 2 ways data is used in your industry.
+
+---
+
+## 📍 **Lesson 2: Introduction to Python & Development Environment Setup**
+
+### ✅ Why Python?
+
+- Easy to learn and read
+- Huge community support
+- Libraries for data science: `Pandas`, `NumPy`, `Matplotlib`, `Seaborn`, `Scikit-learn`
+
+---
+
+### 🔧 Development Environment Setup
+
+**Option 1: Install via Anaconda (Recommended)**
+- Download from: [https://www.anaconda.com](https://www.anaconda.com)
+- Comes with Python, Jupyter Notebook, libraries
+
+**Option 2: Manual Setup**
+```bash
+Install Python: https://www.python.org  
+Install VS Code: https://code.visualstudio.com  
+Install Libraries:
+pip install pandas numpy matplotlib seaborn jupyterlab
+```
+
+---
+
+### ✅ First Python Program
+
+```python
+print("Hello, Data Analytics!")
+```
+
+---
+
+## 📍 **Lesson 3: Introduction to Pandas, NumPy, Matplotlib, Seaborn**
+
+---
+
+### 🧾 **Pandas** – Work with structured data (CSV, Excel, SQL, etc.)
+
+```python
+import pandas as pd
+
+# Load CSV
+df = pd.read_csv('sample.csv')
+
+# Preview
+df.head()
+```
+
+---
+
+### 🔢 **NumPy** – Work with arrays & numerical operations
+
+```python
+import numpy as np
+
+arr = np.array([1, 2, 3])
+print(arr.mean(), arr.max(), arr.min())
+```
+
+---
+
+### 📊 **Matplotlib** – Basic plotting
+
+```python
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3]
+y = [4, 1, 6]
+plt.plot(x, y)
+plt.title("Line Chart")
+plt.show()
+```
+
+---
+
+### 🎨 **Seaborn** – Beautiful statistical plots
+
+```python
+import seaborn as sns
+df = sns.load_dataset("tips")
+sns.histplot(df['total_bill'])
+```
+
+---
+
+## 📍 **Lesson 4: Data Manipulation with Pandas**
+
+---
+
+### 🔍 DataFrame Basics
+
+```python
+df.info()       # Structure
+df.describe()   # Summary statistics
+df.columns      # Column names
+df.shape        # Rows x Columns
+```
+
+---
+
+### 🎯 Indexing and Filtering
+
+```python
+df['total_bill']           # Access a column
+df[['total_bill', 'tip']]  # Access multiple columns
+df[df['tip'] > 5]          # Filter rows
+```
+
+---
+
+### 🧱 Add / Remove Columns
+
+```python
+df['tip_percentage'] = df['tip'] / df['total_bill'] * 100
+df.drop('column_name', axis=1, inplace=True)
+```
+
+---
+
+### 🔄 Sorting & Aggregation
+
+```python
+df.sort_values(by='total_bill', ascending=False)
+
+df.groupby('sex')['tip'].mean()
+```
+
+🧩 **Mini Task**: Show average tip per day.
+
+---
+
+## 📍 **Lesson 5: Basic Visualization with Matplotlib & Seaborn**
+
+---
+
+### 📈 Matplotlib Examples
+
+```python
+# Line Chart
+plt.plot(df['total_bill'])
+plt.title("Total Bill Over Index")
+plt.show()
+
+# Bar Chart
+df['day'].value_counts().plot(kind='bar')
+plt.title("Count by Day")
+plt.show()
+```
+
+---
+
+### 🎨 Seaborn Examples
+
+```python
+# Scatter Plot
+sns.scatterplot(x='total_bill', y='tip', data=df)
+
+# Boxplot
+sns.boxplot(x='day', y='tip', data=df)
+
+# Heatmap
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+```
+
+---
+
+## 🎯 Week 1 Mini Project
+
+Choose a dataset like Titanic, Tips, or Iris:
+
+1. Load the dataset using Pandas
+2. Display structure, types, summary
+3. Add new columns or filter data
+4. Visualize insights using Matplotlib/Seaborn
+
+---
+
+## 📚 Suggested Datasets:
+
+- [Titanic](https://www.kaggle.com/c/titanic)
+- [Tips (Seaborn)](https://github.com/mwaskom/seaborn-data)
+- [Iris](https://archive.ics.uci.edu/ml/datasets/Iris)
+- [CSV Playground](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html)
+
+---
+
+## ✅ Week 1 Checklist:
+
+✅ Know what Data Analytics is  
+✅ Install Python and Jupyter/VS Code  
+✅ Load and inspect data with Pandas  
+✅ Manipulate data with filtering, sorting, new columns  
+✅ Visualize data using Matplotlib and Seaborn
+
+---
+
 
 
 
