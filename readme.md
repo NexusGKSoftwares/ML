@@ -236,6 +236,195 @@ Choose a dataset like Titanic, Tips, or Iris:
 
 
 
+---
+
+# 📘 **Week 2: Exploratory Data Analysis (EDA) & Statistics**
+
+---
+
+## 📍 **Lesson 1: Descriptive Statistics**
+
+### 📊 What is Descriptive Statistics?
+Descriptive stats help **summarize** and **understand** your dataset.
+
+---
+
+### 🧮 Key Metrics:
+
+| Metric        | Description                        | Pandas Code              |
+|---------------|------------------------------------|---------------------------|
+| **Mean**      | Average value                      | `df['col'].mean()`       |
+| **Median**    | Middle value                       | `df['col'].median()`     |
+| **Mode**      | Most frequent value                | `df['col'].mode()`       |
+| **Variance**  | Measure of spread                  | `df['col'].var()`        |
+| **Std Dev**   | Spread around mean (dispersion)    | `df['col'].std()`        |
+| **Min/Max**   | Smallest & largest value           | `df['col'].min()/max()`  |
+| **IQR**       | 75th - 25th percentile             | `Q3 - Q1` (manual calc)  |
+
+---
+
+### 🧪 Example:
+```python
+df = sns.load_dataset('tips')
+df['total_bill'].mean()
+df['tip'].std()
+```
+
+🧩 **Try it**: What’s the median tip for male vs. female customers?
+
+---
+
+## 📍 **Lesson 2: Correlation and Covariance**
+
+### 🔗 What is Correlation?
+
+- Measures **relationship** between two variables
+- Value between `-1` and `1`
+
+```python
+df.corr()  # Pairwise correlation
+```
+
+✅ Use `.corr()` for understanding strength of relationships.
+
+---
+
+### 🔍 Heatmap of Correlation
+
+```python
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+plt.title("Correlation Matrix")
+plt.show()
+```
+
+---
+
+### 🔗 Covariance
+
+- Tells **direction** of the relationship, but not strength
+- Less interpretable than correlation
+
+```python
+df.cov()
+```
+
+---
+
+## 📍 **Lesson 3: Introduction to EDA**
+
+> **EDA** = Exploring your data before applying models.
+
+---
+
+### ✅ Steps in EDA:
+
+1. Load the data
+2. Understand structure and types
+3. Handle missing values
+4. Check outliers
+5. Visualize data patterns
+
+---
+
+### 🔍 Key Functions:
+
+```python
+df.info()
+df.describe()
+df.isnull().sum()
+df.duplicated().sum()
+```
+
+🧩 **Try it**: Run full EDA on the Titanic dataset
+
+---
+
+## 📍 **Lesson 4: Data Visualization for EDA**
+
+### 🔸 Count Plot
+
+```python
+sns.countplot(x='sex', data=df)
+```
+
+### 🔸 Histogram
+
+```python
+sns.histplot(df['total_bill'], kde=True)
+```
+
+### 🔸 Box Plot (for outliers)
+
+```python
+sns.boxplot(x='day', y='total_bill', data=df)
+```
+
+### 🔸 Violin Plot
+
+```python
+sns.violinplot(x='day', y='tip', data=df)
+```
+
+---
+
+## 📍 **Lesson 5: Advanced Visualization with Seaborn & Matplotlib**
+
+### 🔹 Pair Plot
+
+```python
+sns.pairplot(df)
+```
+
+### 🔹 Joint Plot
+
+```python
+sns.jointplot(x='total_bill', y='tip', data=df, kind='hex')
+```
+
+### 🔹 Swarm Plot
+
+```python
+sns.swarmplot(x='day', y='tip', data=df)
+```
+
+---
+
+## 📈 Matplotlib Extras
+
+```python
+# Multiple subplots
+plt.subplot(1, 2, 1)
+plt.hist(df['tip'])
+
+plt.subplot(1, 2, 2)
+plt.boxplot(df['total_bill'])
+plt.show()
+```
+
+---
+
+## 🎯 Week 2 Mini Project
+
+Use **Titanic** or **Iris dataset**:
+
+1. Calculate mean, median, mode for key columns  
+2. Visualize correlation heatmap  
+3. Use boxplots and histograms to show insights  
+4. Summarize EDA findings
+
+---
+
+## ✅ Week 2 Checklist:
+
+✅ Understand descriptive statistics  
+✅ Perform correlation and interpret it  
+✅ Use boxplots, histograms, violin plots  
+✅ Apply full EDA process to any dataset  
+✅ Identify insights visually before modeling
+
+---
+
+
 
 
 
