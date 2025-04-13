@@ -426,6 +426,236 @@ Use **Titanic** or **Iris dataset**:
 
 
 
+---
+
+# 📘 **Week 3: Data Cleaning and Preprocessing**
+
+---
+
+## 📍 **Lesson 1: Handling Missing Values and Duplicates**
+
+---
+
+### 🔎 Detecting Missing Values
+
+```python
+df.isnull().sum()
+```
+
+### 🧽 Handling Missing Data
+
+| Method               | When to Use                           | Code Example |
+|----------------------|----------------------------------------|--------------|
+| **Drop Rows**        | If missing data is small in number     | `df.dropna()` |
+| **Fill with Mean**   | For numerical columns                  | `df['col'].fillna(df['col'].mean())` |
+| **Fill with Mode**   | For categorical columns                | `df['col'].fillna(df['col'].mode()[0])` |
+| **Custom Fill**      | If domain knowledge helps              | `df['col'].fillna(0)` |
+
+---
+
+### 🔁 Handling Duplicates
+
+```python
+df.duplicated().sum()       # Check
+df.drop_duplicates(inplace=True)   # Drop
+```
+
+🧩 **Try it**: Clean a dataset with at least 2 missing columns and duplicates.
+
+---
+
+## 📍 **Lesson 2: Detecting and Treating Outliers**
+
+---
+
+### 🧰 Method 1: IQR (Interquartile Range)
+
+```python
+Q1 = df['col'].quantile(0.25)
+Q3 = df['col'].quantile(0.75)
+IQR = Q3 - Q1
+
+outliers = df[(df['col'] < Q1 - 1.5 * IQR) | (df['col'] > Q3 + 1.5 * IQR)]
+```
+
+---
+
+### 🧰 Method 2: Z-Score
+
+```python
+from scipy import stats
+z_scores = stats.zscore(df['col'])
+df[abs(z_scores) > 3]
+```
+
+---
+
+### 🎯 Handling Outliers
+
+- Remove: `df = df[df['col'] < upper_limit]`
+- Cap/Floor: Replace with percentiles
+- Transform: Use log or square root
+
+🧩 **Task**: Visualize outliers using `sns.boxplot()` and treat them.
+
+---
+
+## 📍 **Lesson 3: Encoding Categorical Data**
+
+---
+
+### 🔡 Why Encoding?
+
+> Machine learning models only understand **numbers** – not text.
+
+---
+
+### ✅ One-Hot Encoding (for Nominal Categories)
+
+```python
+pd.get_dummies(df, columns=['gender', 'smoker'], drop_first=True)
+```
+
+---
+
+### ✅ Label Encoding (for Ordinal Categories)
+
+```python
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['education_level'] = le.fit_transform(df['education_level'])
+```
+
+🧩 **Tip**: Use One-Hot for unordered categories, LabelEncoder for ordered ones.
+
+---
+
+## 📍 **Lesson 4: Feature Scaling: Normalization & Standardization**
+
+---
+
+### 🔢 Why Scaling?
+
+> To make all features comparable in scale for better model performance.
+
+---
+
+### 📏 Normalization (Min-Max Scaling)
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df_scaled = scaler.fit_transform(df[['income', 'age']])
+```
+
+Result: Values between **0 and 1**
+
+---
+
+### 📐 Standardization (Z-score Scaling)
+
+```python
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+df_scaled = scaler.fit_transform(df[['income', 'age']])
+```
+
+Result: Mean = 0, Std = 1
+
+🧩 **Mini Task**: Try both on a dataset and compare with a histogram.
+
+---
+
+## 📍 **Lesson 5: Data Transformation: Pivot, Melt, Reshape**
+
+---
+
+### 🔄 Pivot Table
+
+```python
+df.pivot_table(values='sales', index='region', columns='month', aggfunc='sum')
+```
+
+---
+
+### 🔃 Melt (Wide → Long)
+
+```python
+pd.melt(df, id_vars=['id'], var_name='feature', value_name='value')
+```
+
+---
+
+### 🔁 Reshaping with `.stack()` and `.unstack()`
+
+```python
+df.set_index(['A', 'B']).unstack()
+```
+
+🧩 **Tip**: Use this for time-series and multi-level grouped data.
+
+---
+
+## 📍 **Lesson 6: Preprocessing Text Data**
+
+---
+
+### 🔤 Basic Text Cleaning
+
+```python
+text = "This is SO COOL!! 😎"
+cleaned = text.lower().replace("!", "")
+```
+
+---
+
+### 🪄 Tokenization, Stopwords, Lemmatization
+
+```python
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+tokens = word_tokenize(text)
+tokens = [t for t in tokens if t not in stopwords.words('english')]
+
+lemmatizer = WordNetLemmatizer()
+tokens = [lemmatizer.lemmatize(t) for t in tokens]
+```
+
+🧩 **Optional**: Use `CountVectorizer()` or `TfidfVectorizer()` for model-ready features.
+
+---
+
+## 🎯 Week 3 Mini Project
+
+1. Load a messy dataset (Titanic, housing, or customer data)
+2. Clean missing values and duplicates
+3. Handle outliers in numerical data
+4. Encode categorical columns
+5. Scale numerical features
+6. Create pivot or reshape data
+7. If text exists, clean and tokenize it
+
+---
+
+## ✅ Week 3 Checklist:
+
+✅ Handle missing values  
+✅ Remove or treat duplicates  
+✅ Detect & treat outliers  
+✅ Encode categorical features  
+✅ Normalize & standardize numerical features  
+✅ Transform wide vs. long data  
+✅ Clean basic text for NLP
+
+---
+
 
 
 ---
